@@ -51,8 +51,11 @@ engine.uci()
 info_handler = chess.uci.InfoHandler()
 engine.info_handlers.append(info_handler)
 
+if 'games' not in settings.games :
+    sys.exit(settings.games + ' does not contain "games"')
+
 all_games = open(settings.games, "r")
-tactics_file = open("tactics.pgn", "w")
+tactics_file = open(settings.games.replace('games','tactics'), "w")
 game_id = 0
 while True:
     game = chess.pgn.read_game(all_games)
