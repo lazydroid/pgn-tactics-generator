@@ -89,6 +89,10 @@ def update_stockfish(filename):
     else:
         raise ConfigError("No precompiled %s for your platform" % filename)
 
+    if os.path.isfile(filename) :
+        print('%s already exists' % filename)
+        return filename
+
     # Download
     def reporthook(a, b, c):
         if sys.stderr.isatty():
