@@ -15,7 +15,8 @@ import time
 
 
 # tourments
-tourment_ids = ['25MtoToy',
+tourment_ids = [
+'25MtoToy',
 'E14kHVwX',
 'tdntXNhy',
 'sj5GoEdS',
@@ -24,7 +25,11 @@ tourment_ids = ['25MtoToy',
 'T4RW1ux2',
 'nzw7OKBq']
 
-all_games = open("games.pgn", "w")
+#tourment_ids = [ 'YZbypMx0' ]
+tourment_ids = [ 'dec20bta' ]	# titled blitz arena 2020
+
+#all_games = open("games.pgn", "w")
+all_games = open("bta2020.pgn", "w")
 pgn = ""
 for id in tourment_ids:
     print ('https://lichess.org/api/tournament/'+id+'/games')
