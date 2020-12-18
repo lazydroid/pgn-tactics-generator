@@ -17,11 +17,11 @@ from modules.api.api import post_puzzle
 
 parser = argparse.ArgumentParser(description=__doc__)
 
-parser.add_argument("threads", metavar="THREADS", nargs="?", type=int, default=4,
+parser.add_argument("threads", metavar="THREADS", nargs="?", type=int, default=7,
                     help="number of engine threads")
-parser.add_argument("memory", metavar="MEMORY", nargs="?", type=int, default=2048,
+parser.add_argument("--memory", metavar="MEMORY", nargs="?", type=int, default=8192,
                     help="memory in MB to use for engine hashtables")
-parser.add_argument("--depth", metavar="DEPTH", nargs="?", type=int, default=8,
+parser.add_argument("--depth", metavar="DEPTH", nargs="?", type=int, default=15,
                     help="depth for stockfish analysis")
 parser.add_argument("--quiet", dest="loglevel",
                     default=logging.DEBUG, action="store_const", const=logging.INFO,
