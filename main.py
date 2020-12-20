@@ -17,7 +17,7 @@ from modules.api.api import post_puzzle
 
 parser = argparse.ArgumentParser(description=__doc__)
 
-parser.add_argument("threads", metavar="THREADS", nargs="?", type=int, default=7,
+parser.add_argument("--threads", metavar="THREADS", nargs="?", type=int, default=7,
                     help="number of engine threads")
 parser.add_argument("--memory", metavar="MEMORY", nargs="?", type=int, default=8192,
                     help="memory in MB to use for engine hashtables")
@@ -26,7 +26,7 @@ parser.add_argument("--depth", metavar="DEPTH", nargs="?", type=int, default=15,
 parser.add_argument("--quiet", dest="loglevel",
                     default=logging.DEBUG, action="store_const", const=logging.INFO,
                     help="substantially reduce the number of logged messages")
-parser.add_argument("--games", metavar="GAMES", default="games.pgn",
+parser.add_argument("games", metavar="GAMES", default="games.pgn",
                     help="A specific pgn with games")
 parser.add_argument("--strict", metavar="STRICT", default=True,
                     help="If False then it will be generate more tactics but maybe a little ambiguous")
