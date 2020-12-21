@@ -12,7 +12,7 @@ import requests
 import chess
 import re
 import time
-
+import datetime
 
 # tournaments
 tournament_ids = [
@@ -26,16 +26,19 @@ tournament_ids = [
 'nzw7OKBq']
 
 #tournament_ids = [ 'YZbypMx0' ]
-tournament_ids = [ 'dec20bta' ]	# titled blitz arena 2020
+#tournament_ids = [ 'dec20bta' ]	# titled blitz arena 2020
+tournament_ids = [ 'dec20lta' ]	# titled arena dec 2020
 
-#all_games = open("games.pgn", "w")
-all_games = open("bta2020.pgn", "w")
 pgn = ""
 for id in tournament_ids:
     print ('https://lichess.org/api/tournament/'+id+'/games')
     response = requests.get('https://lichess.org/api/tournament/'+id+'/games')
-    pgn = pgn +'\n'+ str(response.text)
+    pgn = pgn +'\n'+ response.text.encode('utf-8')
 
-all_games.write(pgn)
-all_games.close()
-logging.debug("Finished. Pgn is in games.pgn ")
+now = datetime.datetime.now()
+suffix = now.strftime( '%Y-%m-%d' )
+with open("%s_%s_games.pgn" % (tournament_ids[0], suffix), "w") as all_games :
+	all_games.write(pgn)
+
+logging.debug("Finished.")
+
