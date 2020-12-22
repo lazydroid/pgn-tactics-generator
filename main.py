@@ -15,9 +15,15 @@ from modules.bcolors.bcolors import bcolors
 from modules.investigate.investigate import investigate
 from modules.api.api import post_puzzle
 
+import multiprocessing
+
+cores = multiprocessing.cpu_count()
+threads = (cores - 1) if cores < 10 else cores - 5
+threads = max( threads, 1)	# should be at least one
+
 parser = argparse.ArgumentParser(description=__doc__)
 
-parser.add_argument("--threads", metavar="THREADS", nargs="?", type=int, default=7,
+parser.add_argument("--threads", metavar="THREADS", nargs="?", type=int, default=threads,
                     help="number of engine threads")
 parser.add_argument("--memory", metavar="MEMORY", nargs="?", type=int, default=8192,
                     help="memory in MB to use for engine hashtables")
